@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - OnlineShoppingStore</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="font-family:sans-serif">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:darkblue">
+        <div class="container">
+            <div class="navbar-header" style="font-weight:bolder;">
+                @Html.ActionLink("UserProfile", "Index", "UserProfile", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Category", "Index", "Category", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("SubCategory", "Index", "SubCategory", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Product", "Index", "Product", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Order", "Index", "Order", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("ErrorHistory", "Index","ErrorHistory", null, new { @class = "navbar-brand" })
+            </div>
+            <div style="float:right; font-weight:900">
+                @Html.ActionLink("LogOff", "Signout", "Account", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content" >
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

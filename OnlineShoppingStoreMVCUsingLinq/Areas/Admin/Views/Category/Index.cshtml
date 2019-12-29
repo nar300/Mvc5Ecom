@@ -1,0 +1,64 @@
+﻿@model IEnumerable<OnlineShoppingStoreMVCUsingLinq.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Category</h2>
+
+<p>
+    @Html.ActionLink("Add Category", "Create")
+</p>
+<table class="table table-bordered">
+    <tr class="text-success">
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="text-center">
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedByUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedByUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PKCategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PKCategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PKCategoryId })
+        </td>
+    </tr>
+}
+
+</table>

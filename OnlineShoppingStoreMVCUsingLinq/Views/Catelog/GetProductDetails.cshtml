@@ -1,0 +1,25 @@
+﻿@model OnlineShoppingStoreMVCUsingLinq.Product
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h3>Product Details</h3>
+<div class="row">
+    <div class="col-md-4">
+        <img class="Zoom" style="height:250px;width:250px" src=@ViewBag.ImagePath alt="Loading.." data-zoom-image="@ViewBag.ImagePath" />
+    </div>
+    <div class="col-md-6">
+        <h4>Product Name: @Html.DisplayFor(model => model.ProductName)</h4><br />
+        <h4>Description:@Html.DisplayFor(model => model.Description)</h4><br />
+        <h4>Price:</h4><h4 style="font-family:cursive;color:red">@Html.DisplayFor(model => model.Price)</h4>
+    </div>
+</div>
+
+<p style="padding-left:10%"><a href="@Url.Action("AddToCart", "ShoppingCart", new {productId=@Model.PKProductId,price=@Model.Price,quantity=@Model.Quantity })"><input type="submit" value="BuyNow" name="btnBuyNow" class="btn-primary" /></a></p>
+@section Scripts{
+<script src="~/Scripts/jquery.elevatezoom.js"></script> 
+     <script type="text/javascript">
+        $(".Zoom").elevateZoom();
+    </script>
+}

@@ -1,0 +1,136 @@
+﻿@model IEnumerable<OnlineShoppingStoreMVCUsingLinq.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Product</h2>
+
+<p>
+    @Html.ActionLink("Add Product", "Create")
+</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.Label("Category:")
+        @Html.DropDownList("Category", ViewBag.Category as SelectList, "Select Category")
+        @Html.Label("SubCategory:")
+        @Html.DropDownList("SubCategory", ViewBag.SubCategory as SelectList, "Select SubCategory")
+        <input type="submit" name="btnSearch" value="Search" class="btn btn-sm btn-primary" />
+        <input type="submit" name="btnReset" value="Reset" class="btn btn-sm btn-primary" />
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedByUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "ProductImage", new {id=item.PKProductId })">GetProductImage</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PKProductId })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PKProductId })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.PKProductId })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#Category').change(function (e) {
+                var id = $(this).val();
+                if (id != "") {
+                    $.ajax({
+                        url: "Product/GetSubCategories",
+                        data: { id: id },
+                        type: "GET"
+                    }).success(function (data) {
+
+                        $("#SubCategory").empty();
+                        $.each(data, function (key, value) {
+                            $("#SubCategory").append($("<option></option>").val(value.PKSubCategoryId).html(value.SubCategoryName));
+                        });
+                    })
+                }
+            })
+            $('#Category').trigger('change');
+        })
+    </script>
+}

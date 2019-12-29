@@ -1,0 +1,89 @@
+﻿@model IEnumerable<OnlineShoppingStoreMVCUsingLinq.SubCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>SubCategory</h2>
+
+<p>
+    @Html.ActionLink("Add SubCategory", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.Label("Category")
+        @Html.DropDownList("Category", ViewBag.CategoryId as SelectList," Select Category")
+        <input type="submit" name="btnSearch" value="Search" class="btn btn-sm btn-primary" />
+        <input type="submit" name="btnReset" value="Reset" class="btn btn-sm btn-primary" />
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedByUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedByUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedByUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PKSubCategoryId })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PKSubCategoryId })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.PKSubCategoryId })
+            </td>
+        </tr>
+    }
+
+</table>

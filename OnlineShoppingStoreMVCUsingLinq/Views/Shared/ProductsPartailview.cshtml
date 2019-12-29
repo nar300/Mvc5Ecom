@@ -1,0 +1,14 @@
+﻿@using OnlineShoppingStoreMVCUsingLinq.BO
+@{
+    ProductBO objProductBO = new ProductBO();
+}
+<div class="row">
+
+    @foreach (var product in objProductBO.GetProducts())
+    {
+        <div class="col-xs-12 col-sm-3 img-responsive" style="padding-bottom:10px;">
+            <a href=@Url.Action("GetProductImages", "Catelog", new { productId = product.PKProductId })><img src="@product.ImagePath" alt="Loading..." height="150" width="150"/></a>
+        </div>
+    }
+
+</div>

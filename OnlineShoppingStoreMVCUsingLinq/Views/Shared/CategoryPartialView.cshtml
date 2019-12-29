@@ -1,0 +1,14 @@
+﻿@using OnlineShoppingStoreMVCUsingLinq.BO;
+@{
+    CategoryBO objCategoryBO = new CategoryBO();
+}
+<ul class="list-group" >
+
+    @foreach (Category item in objCategoryBO.GetCategories())
+    {
+        <li style="list-style: none;" class="list-group-item-success ">
+            <a class="btn" href="@Url.Action("GetSubCategory", "Catelog", new { categoryId = item.PKCategoryId, categoryName = item.CategoryName })">@item.CategoryName</a><br />
+        </li>
+    }
+
+</ul>

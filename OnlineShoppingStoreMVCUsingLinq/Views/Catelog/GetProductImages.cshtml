@@ -1,0 +1,21 @@
+﻿@model IEnumerable<OnlineShoppingStoreMVCUsingLinq.ProductImage>
+@{
+    ViewBag.Title = "ProductImages";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h3></h3>
+<div class="container">
+    @foreach (var items in Model)
+    {
+        <div class="col-sm-3 img-responsive">
+            <a href=@Url.Action("GetProductDetails", "Catelog", new { productId = @items.FKProductId,imagePath=@items.ImagePath})>
+                <center>
+                    <img src="@items.ImagePath" alt="Loading.." style="max-height:180px"/>
+                    <p>@items.ImageName.Split('.')[0].ToString()</p>
+                </center> 
+            </a>
+        </div>
+    }
+
+</div>
